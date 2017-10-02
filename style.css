@@ -20,6 +20,10 @@ body {
     height: 100%;
 }
 
+.parallax-image {
+    position: absolute;
+}
+
 .alternateLorum {
     background-color: white;
     color:black;

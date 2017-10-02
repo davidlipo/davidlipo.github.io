@@ -1,5 +1,13 @@
 window.onload = function(){
     document.addEventListener("scroll", onScroll);
+
+    var speedOfScroll = 0.8;
+    var contentHeight = document.getElementById("content").scrollHeight;
+    var parallaxImages = document.getElementsByClassName("parallax-image");
+    for (var i = 0; i < parallaxImages.length; i++) {
+        parallaxImages[i].style.minWidth = window.innerWidth.toString() + "px";
+        parallaxImages[i].style.minHeight = (window.innerHeight + 200).toString() + "px";
+    }
 }
 
 function onScroll(event) {
@@ -8,10 +16,22 @@ function onScroll(event) {
     var contentHeight = document.getElementById("content").scrollHeight;
     var scrollableWindowHeight = contentHeight - screenHeight;
     var percentageScrolled = offset / scrollableWindowHeight;
-    var parallaxImage = document.getElementById("parallax-image");
-    var imageScrollableHeight = parallaxImage.height - screenHeight;
-    var amountToScroll = -imageScrollableHeight * percentageScrolled;
-    parallaxImage.style.marginTop = amountToScroll.toString() + "px";
+    var parallaxImages = document.getElementsByClassName("parallax-image");
+
+    var percentageSoFar = 0;
+    for (var i = 0; i < parallaxImages.length; i++) {
+        var currentPercentage = parseInt(parallaxImages[i].dataset.percentage, 10) / 100;
+        var imageScrollableHeight = parallaxImages[i].height - screenHeight;
+        if (percentageSoFar <= percentageScrolled && percentageSoFar + currentPercentage >= percentageScrolled) {
+            var amountToScrollOnImage = imageScrollableHeight * (percentageScrolled - percentageSoFar) / currentPercentage;
+            var totalAmountToScroll = -(amountToScrollOnImage);
+            parallaxImages[i].style.top = totalAmountToScroll.toString() + "px";
+        } else {
+            parallaxImages[i].style.top = "50000px";
+            // TODO - Fade in -----------------------------------------------------------------------
+        }
+        percentageSoFar += currentPercentage;
+    }
     /*var debug = "";
     debug += "screenHeight " + screenHeight + "<br/>";
     debug += "offset " + offset + "<br/>";
