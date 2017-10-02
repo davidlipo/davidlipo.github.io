@@ -9,7 +9,7 @@
             function onScroll(event) {
                 var screenHeight = window.innerHeight;
                 var offset = window.scrollY;
-                var scrollableWindowHeight = Math.abs(document.getElementById("content").scrollHeight) - screenHeight;
+                var scrollableWindowHeight = document.getElementById("content").scrollHeight - screenHeight;
                 var percentageScrolled = offset / scrollableWindowHeight;
                 var parallaxImage = document.getElementById("parallax-image");
                 var imageScrollableHeight = parallaxImage.height - screenHeight;
