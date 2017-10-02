@@ -18,7 +18,7 @@
                 var debug = "";
                 debug += "screenHeight " + screenHeight + "<br/>";
                 debug += "offset " + offset + "<br/>";
-                debug += "scrollHeight " + document.body.scrollHeight + "<br/>";
+                debug += "contentHeight " + document.getElementById("content").scrollHeight + "<br/>";
                 debug += "scrollableWindowHeight " + scrollableWindowHeight + "<br/>";
                 debug += "percentageScrolled " + percentageScrolled + "<br/>";
                 debug += "imageScrollableHeight " + imageScrollableHeight + "<br/>";
@@ -31,7 +31,7 @@
         <div id="parallax" style="position: fixed;z-index: 0;width: 100%;height: 100%;">
             <img id="parallax-image" src="background.jpeg" style="width: 1800px;" />
         </div>
-        <div style="position: absolute;z-index: 1;width:100%;height: 10000px;"></div>
+        <div id="content" style="position: absolute;z-index: 1;width:100%;height: 10000px;"></div>
         <div id="debug" style="position: fixed;z-index: 2;color:white;font-size:3em;"></div>
         <!---<div id="content" style="position: absolute;z-index: 1;width: 100%;height: 100%;font-size: 5em;">
             <div>
