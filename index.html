@@ -15,6 +15,14 @@
                 var imageScrollableHeight = parallaxImage.height - screenHeight;
                 var amountToScroll = -imageScrollableHeight * percentageScrolled;
                 parallaxImage.style.marginTop = amountToScroll.toString() + "px";
+                var debug = "";
+                debug += "screenHeight " + screenHeight + "<br/>";
+                debug += "offset " + offset + "<br/>";
+                debug += "scrollableWindowHeight " + scrollableWindowHeight + "<br/>";
+                debug += "percentageScrolled " + percentageScrolled + "<br/>";
+                debug += "imageScrollableHeight " + imageScrollableHeight + "<br/>";
+                debug += "amountToScroll " + amountToScroll + "<br/>";
+                document.getElementById("debug").innerHTML = debug;
             }
         </script>
     </head>
@@ -22,7 +30,9 @@
         <div id="parallax" style="position: fixed;z-index: 0;width: 100%;height: 100%;">
             <img id="parallax-image" src="background.jpeg" style="width: 1800px;" />
         </div>
-        <div id="content" style="position: absolute;z-index: 1;width: 100%;height: 100%;font-size: 5em;">
+        <div style="position: absolute;z-index: 1;width:100%;height: 10000px;"></div>
+        <div id="debug" style="position: fixed;z-index: 2;color:white;font-size:3em;"></div>
+        <!---<div id="content" style="position: absolute;z-index: 1;width: 100%;height: 100%;font-size: 5em;">
             <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec malesuada turpis, ut ornare metus. Aenean dignissim, risus finibus venenatis dignissim, nisl sem venenatis leo, sit amet condimentum tortor libero at eros. Morbi non hendrerit dui, at faucibus mauris. Etiam aliquet mollis dolor, vel ornare elit pharetra at. Nam mattis, augue nec fermentum eleifend, mi massa semper tortor, nec gravida eros sapien ut purus. Fusce faucibus, lacus id fringilla dapibus, magna enim varius tortor, in accumsan est urna ut nisi. Vivamus faucibus lorem nec nisi cursus viverra non in urna. Nunc metus libero, aliquet ut quam at, interdum fringilla dui. Sed convallis venenatis lorem, vitae ultrices leo efficitur vel. Interdum et malesuada fames ac ante ipsum primis in faucibus.
             </div>
@@ -56,7 +66,7 @@
             <div>
                 Pellentesque mi mauris, gravida nec augue eget, ornare maximus massa. Mauris sit amet nunc eu sapien scelerisque luctus. Mauris nisi mi, commodo et nisl quis, congue scelerisque nisi. Suspendisse ante diam, egestas sodales urna vitae, iaculis venenatis lorem. Nunc a turpis eget lorem euismod aliquam. Proin efficitur leo nec molestie aliquet. Proin convallis mauris semper odio ullamcorper ultrices. Aliquam rhoncus dolor id fermentum blandit. Curabitur et sapien vitae magna accumsan dapibus. Nulla rhoncus ante vel eros vulputate fringilla. Mauris eleifend in enim pharetra scelerisque. Fusce eget libero sit amet velit cursus sollicitudin nec ac sem. Integer tristique et diam ac ornare. Praesent nec eros eget nibh imperdiet molestie. Aliquam varius turpis eu erat convallis, ac dignissim tellus efficitur. Etiam pulvinar eleifend justo, sit amet ultrices lacus facilisis non.
             </div>
-        </div>
+        </div>-->
 
     </body>
 </html>
