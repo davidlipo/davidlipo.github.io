@@ -51,7 +51,7 @@ body {
     content: "\201D";
     position: absolute;
     margin-top: -1em;
-    margin-left: -4em;
+    margin-left: -5em;
 }
 .animationStart.quotesEnd:after {
     animation-duration: 1500ms;
