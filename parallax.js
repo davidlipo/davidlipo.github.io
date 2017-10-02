@@ -22,13 +22,17 @@ function onScroll(event) {
     debug += "amountToScroll " + amountToScroll + "<br/>";
     document.getElementById("debug").innerHTML = debug;*/
 
-    var divsToFadeIn = document.getElementsByClassName("fadeIn");
+    var divsToFadeIn = document.getElementsByClassName("onappear");
     for (var i = 0; i < divsToFadeIn.length; i++) {
         var distanceToTop = divsToFadeIn[i].getBoundingClientRect().top;
         if (distanceToTop < screenHeight) {
             var distanceToEnd = 200;
             var percentageToGoal = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
-            changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
+            switch (divsToFadeIn[i].dataset.onappear) {
+                case "FADE_COLOR":
+                    changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
+                    break;
+            }
         }
     }
 }
