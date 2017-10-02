@@ -32,6 +32,9 @@ function onScroll(event) {
                 case "FADE_COLOR":
                     changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
                     break;
+                case "PULL_QUOTES":
+                    addAnimationClass(divsToFadeIn[i], percentageToGoal);
+                    break;
             }
         }
     }
@@ -42,4 +45,13 @@ function changeColorOnScreen(element, percentageToGoal) {
     var yellow = parseInt("FFFF00", 16);
     var color = Math.ceil(percentageToGoal*(white - yellow) + yellow);
     element.style.backgroundColor = "#" + color.toString(16);
+}
+
+function addAnimationClass(element, percentageToGoal) {
+    var divsToAddClass = element.getElementsByClassName("quotes");
+    for (var i = 0; i < divsToAddClass.length; i++) {
+        if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > 0.5) {
+            divsToAddClass[i].classList.add("animationStart");
+        }
+    }
 }

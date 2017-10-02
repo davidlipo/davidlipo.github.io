@@ -24,3 +24,57 @@ body {
     background-color: white;
     color:black;
 }
+
+.quotes {
+    display: inline-block;
+    font-size: 3em;
+    width: 110px;
+}
+.quotes:before {
+    content: "A";
+    opacity: 0;
+}
+
+.quotesStart:after {
+    content: "\201C";
+    position: absolute;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+.animationStart.quotesStart:after {
+    animation-duration: 500ms;
+    animation-name: slideinStart;
+    margin-left: 0;
+}
+
+.quotesEnd:after {
+    content: "\201D";
+    position: absolute;
+    margin-top: -1em;
+    margin-left: -3.5em;
+}
+.animationStart.quotesEnd:after {
+    animation-duration: 1500ms;
+    animation-name: slideinEnd;
+    margin-left: 0;
+}
+
+@keyframes slideinStart {
+    from {
+        margin-left: -1em;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes slideinEnd {
+    from {
+        margin-left: -3.5em;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
