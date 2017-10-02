@@ -9,7 +9,7 @@
             function onScroll(event) {
                 var screenHeight = window.innerHeight;
                 var offset = window.scrollY;
-                var scrollableWindowHeight = Math.abs(document.body.scrollHeight) - screenHeight;
+                var scrollableWindowHeight = Math.abs(document.getElementById("content").scrollHeight) - screenHeight;
                 var percentageScrolled = offset / scrollableWindowHeight;
                 var parallaxImage = document.getElementById("parallax-image");
                 var imageScrollableHeight = parallaxImage.height - screenHeight;
@@ -18,7 +18,7 @@
                 var debug = "";
                 debug += "screenHeight " + screenHeight + "<br/>";
                 debug += "offset " + offset + "<br/>";
-                debug += "contentHeight " + document.getElementById("content").scrollHeight + "<br/>";
+                debug += "scrollHeight " + document.body.scrollHeight + "<br/>";
                 debug += "scrollableWindowHeight " + scrollableWindowHeight + "<br/>";
                 debug += "percentageScrolled " + percentageScrolled + "<br/>";
                 debug += "imageScrollableHeight " + imageScrollableHeight + "<br/>";
@@ -27,7 +27,7 @@
             }
         </script>
     </head>
-    <body style="margin: 0;background-color:black;">
+    <body style="margin: 0;background-color:black;height: auto;">
         <div id="parallax" style="position: fixed;z-index: 0;width: 100%;height: 100%;">
             <img id="parallax-image" src="background.jpeg" style="width: 1800px;" />
         </div>
