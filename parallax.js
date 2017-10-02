@@ -22,18 +22,20 @@ function onScroll(event) {
     debug += "amountToScroll " + amountToScroll + "<br/>";
     document.getElementById("debug").innerHTML = debug;*/
 
-    var distanceToTop = document.getElementById("fadeIn").getBoundingClientRect().top;
-    if (distanceToTop < screenHeight) {
-        changeColorOnScreen();
-        var distanceToEnd = 200;
-        var white = parseInt("FFFFFF", 16);
-        var yellow = parseInt("FFFF00", 16);
-        var percentageToGoal = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
-        var color = Math.ceil(percentageToGoal*(white - yellow) + yellow);
-        document.getElementById("fadeIn").style.backgroundColor = "#" + color.toString(16);
+    var divsToFadeIn = document.getElementsByClassName("fadeIn");
+    for (var i = 0; i < divsToFadeIn.length; i++) {
+        var distanceToTop = divsToFadeIn[i].getBoundingClientRect().top;
+        if (distanceToTop < screenHeight) {
+            var distanceToEnd = 200;
+            var percentageToGoal = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
+            changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
+        }
     }
 }
 
-function changeColorOnScreen(element, distanceToEnd) {
-
+function changeColorOnScreen(element, percentageToGoal) {
+    var white = parseInt("FFFFFF", 16);
+    var yellow = parseInt("FFFF00", 16);
+    var color = Math.ceil(percentageToGoal*(white - yellow) + yellow);
+    element.style.backgroundColor = "#" + color.toString(16);
 }
