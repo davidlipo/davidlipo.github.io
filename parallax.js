@@ -26,14 +26,25 @@ function onScroll(event) {
     var percentageScrolled = offset / scrollableWindowHeight;
     var parallaxImages = document.getElementsByClassName("parallax-image");
 
+    var fadePercentage = 0.1;
     var percentageSoFar = 0;
     for (var i = 0; i < parallaxImages.length; i++) {
         var currentPercentage = parseInt(parallaxImages[i].dataset.percentage, 10) / 100;
         var imageScrollableHeight = parallaxImages[i].height - screenHeight;
-        if (percentageSoFar <= percentageScrolled && percentageSoFar + currentPercentage >= percentageScrolled) {
+        if (percentageSoFar - fadePercentage <= percentageScrolled && percentageSoFar + currentPercentage + fadePercentage >= percentageScrolled) {
             var amountToScrollOnImage = imageScrollableHeight * (percentageScrolled - percentageSoFar) / currentPercentage;
             var totalAmountToScroll = -(amountToScrollOnImage);
             parallaxImages[i].style.top = totalAmountToScroll.toString() + "px";
+            var amountToFade = 0;
+            if (percentageSoFar > percentageScrolled) {
+                amountToFade = percentageSoFar - percentageScrolled;
+            } else if (percentageSoFar + currentPercentage < percentageScrolled) {
+                amountToFade = percentageScrolled - (percentageSoFar + currentPercentage);
+            }
+            if (amountToFade > 0) {
+                var opacity = 1 - (amountToFade / fadePercentage);
+                parallaxImages[i].style.opacity = opacity;
+            }
         } else {
             parallaxImages[i].style.top = "50000px";
         }
