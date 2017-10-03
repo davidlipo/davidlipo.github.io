@@ -22,7 +22,7 @@ body {
 
 .parallax-image {
     position: absolute;
-    filter: blur(10px) brightness(70%);
+    /*filter: blur(10px) brightness(70%);*/
 }
 
 .alternateLorum {
