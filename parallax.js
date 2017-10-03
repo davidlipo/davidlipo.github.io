@@ -1,12 +1,20 @@
 window.onload = function(){
     document.addEventListener("scroll", onScroll);
 
-    var speedOfScroll = 0.8;
+    // PARALLAX
     var contentHeight = document.getElementById("content").scrollHeight;
     var parallaxImages = document.getElementsByClassName("parallax-image");
     for (var i = 0; i < parallaxImages.length; i++) {
         parallaxImages[i].style.minWidth = window.innerWidth.toString() + "px";
         parallaxImages[i].style.minHeight = (window.innerHeight + 200).toString() + "px";
+    }
+
+    // LETTERBOX_IMAGES
+    var letterboxParents = document.getElementsByClassName("letterbox-parent");
+    for (var i = 0; i < letterboxParents.length; i++) {
+        var letterboxImage = letterboxParents[i].getElementsByClassName("letterbox-image")[0];
+        var scrollPercentage = parseInt(letterboxParents[i].dataset.scrollPercentage, 10) / 100;
+        //letterboxParents[i].style.height = ((1 - scrollPercentage) * letterboxImage.height).toString() + "px";
     }
 }
 
@@ -28,7 +36,6 @@ function onScroll(event) {
             parallaxImages[i].style.top = totalAmountToScroll.toString() + "px";
         } else {
             parallaxImages[i].style.top = "50000px";
-            // TODO - Fade in -----------------------------------------------------------------------
         }
         percentageSoFar += currentPercentage;
     }
@@ -55,6 +62,9 @@ function onScroll(event) {
                 case "PULL_QUOTES":
                     addAnimationClass(divsToFadeIn[i], percentageToGoal);
                     break;
+                case "LETTERBOX_IMAGE":
+                    scrollLetterbox(divsToFadeIn[i], percentageToGoal);
+                    break;
             }
         }
     }
@@ -79,5 +89,18 @@ function addAnimationClass(element, percentageToGoal) {
             void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
             divsToAddClass[i].classList.add("animationEnd");
         }
+    }
+}
+
+function scrollLetterbox(element, percentageToGoal) {
+    var startPercentage = 0.5;
+    if (percentageToGoal > startPercentage) {
+        var percentageTillEnd = (percentageToGoal - startPercentage) / (1 - startPercentage);
+        var letterboxParent = element.getElementsByClassName("letterbox-parent")[0];
+        var letterboxImage = letterboxParent.getElementsByClassName("letterbox-image")[0];
+        var scrollPercentage = parseInt(letterboxParent.dataset.scrollPercentage, 10) / 100;
+        var amountToScroll = -(scrollPercentage * letterboxImage.height * percentageTillEnd);
+        letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
+        letterboxParent.style.height = (letterboxImage.height + amountToScroll).toString() + "px";
     }
 }

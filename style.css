@@ -92,3 +92,12 @@ body {
         margin-left: 0;
     }
 }
+
+.letterbox-parent {
+    width: 100%;
+    overflow: hidden;
+}
+
+.letterbox-image {
+    width: 100%;
+}
