@@ -45,10 +45,15 @@ body {
     margin-top: -1em;
     margin-left: -1em;
 }
-.animationStart.quotesStart:after {
+.animationStart.quotesStart:after,
+.animationEnd.quotesStart:after {
     animation-duration: 500ms;
     animation-name: slideinStart;
     margin-left: 0;
+}
+.animationEnd.quotesStart:after {
+    animation-direction: reverse;
+    margin-left: -1em;
 }
 
 .quotesEnd:after {
@@ -57,10 +62,15 @@ body {
     margin-top: -1em;
     margin-left: -5em;
 }
-.animationStart.quotesEnd:after {
-    animation-duration: 1500ms;
+.animationStart.quotesEnd:after,
+.animationEnd.quotesEnd:after {
+    animation-duration: 1000ms;
     animation-name: slideinEnd;
     margin-left: 0;
+}
+.animationEnd.quotesEnd:after {
+    animation-direction: reverse;
+    margin-left: -4em;
 }
 
 @keyframes slideinStart {
@@ -75,7 +85,7 @@ body {
 
 @keyframes slideinEnd {
     from {
-        margin-left: -3.5em;
+        margin-left: -4em;
     }
 
     to {

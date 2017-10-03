@@ -71,7 +71,13 @@ function addAnimationClass(element, percentageToGoal) {
     var divsToAddClass = element.getElementsByClassName("quotes");
     for (var i = 0; i < divsToAddClass.length; i++) {
         if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > 0.5) {
+            divsToAddClass[i].classList.remove("animationEnd");
+            void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
             divsToAddClass[i].classList.add("animationStart");
+        } else if (divsToAddClass[i].classList.contains("animationStart") && percentageToGoal < 0.5) {
+            divsToAddClass[i].classList.remove("animationStart");
+            void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
+            divsToAddClass[i].classList.add("animationEnd");
         }
     }
 }
