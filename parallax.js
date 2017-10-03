@@ -14,7 +14,9 @@ window.onload = function(){
     for (var i = 0; i < letterboxParents.length; i++) {
         var letterboxImage = letterboxParents[i].getElementsByClassName("letterbox-image")[0];
         var scrollPercentage = parseInt(letterboxParents[i].dataset.scrollPercentage, 10) / 100;
-        //letterboxParents[i].style.height = ((1 - scrollPercentage) * letterboxImage.height).toString() + "px";
+        letterboxParents[i].style.height = ((1 - scrollPercentage) * letterboxImage.height).toString() + "px";
+        var amountToScroll = -(scrollPercentage * letterboxImage.height);
+        letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
     }
 }
 
@@ -112,8 +114,7 @@ function scrollLetterbox(element, percentageToGoal) {
         var letterboxParent = element.getElementsByClassName("letterbox-parent")[0];
         var letterboxImage = letterboxParent.getElementsByClassName("letterbox-image")[0];
         var scrollPercentage = parseInt(letterboxParent.dataset.scrollPercentage, 10) / 100;
-        var amountToScroll = -(scrollPercentage * letterboxImage.height * percentageTillEnd);
+        var amountToScroll = -(scrollPercentage * letterboxImage.height * (1 - percentageTillEnd));
         letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
-        letterboxParent.style.height = (letterboxImage.height + amountToScroll).toString() + "px";
     }
 }
