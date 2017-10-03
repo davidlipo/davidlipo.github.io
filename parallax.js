@@ -9,7 +9,7 @@ window.onload = function(){
         parallaxImages[i].style.minHeight = (window.innerHeight + 200).toString() + "px";
     }
 
-    // LETTERBOX_IMAGES
+    // LETTERBOX_IMAGE
     var letterboxParents = document.getElementsByClassName("letterbox-parent");
     for (var i = 0; i < letterboxParents.length; i++) {
         var letterboxImage = letterboxParents[i].getElementsByClassName("letterbox-image")[0];
@@ -17,6 +17,13 @@ window.onload = function(){
         letterboxParents[i].style.height = ((1 - scrollPercentage) * letterboxImage.height).toString() + "px";
         var amountToScroll = -(scrollPercentage * letterboxImage.height);
         letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
+    }
+
+    // FADE_IMAGE
+    var fadeParents = document.getElementsByClassName("fade-parent");
+    for (var i = 0; i < fadeParents.length; i++) {
+        var fadeImage = fadeParents[i].getElementsByClassName("fade-initial")[0];
+        fadeParents[i].style.height = fadeImage.height + "px";
     }
 }
 
@@ -80,6 +87,9 @@ function onScroll(event) {
                 case "LETTERBOX_IMAGE":
                     scrollLetterbox(divsToFadeIn[i], percentageToGoal);
                     break;
+                case "FADE_IMAGE":
+                    fadeImage(divsToFadeIn[i], percentageToGoal);
+                    break;
             }
         }
     }
@@ -116,5 +126,16 @@ function scrollLetterbox(element, percentageToGoal) {
         var scrollPercentage = parseInt(letterboxParent.dataset.scrollPercentage, 10) / 100;
         var amountToScroll = -(scrollPercentage * letterboxImage.height * (1 - percentageTillEnd));
         letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
+    }
+}
+
+function fadeImage(element, percentageToGoal) {
+    var startPercentage = 0.5;
+    if (percentageToGoal > startPercentage) {
+        var percentageTillEnd = (percentageToGoal - startPercentage) / (1 - startPercentage);
+        var fadeParent = element.getElementsByClassName("fade-parent")[0];
+        var fadeInitial = fadeParent.getElementsByClassName("fade-initial")[0];
+        var fadeNew = fadeParent.getElementsByClassName("fade-new")[0];
+        fadeNew.style.opacity = percentageTillEnd;
     }
 }

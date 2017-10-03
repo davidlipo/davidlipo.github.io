@@ -101,3 +101,15 @@ body {
 .letterbox-image {
     width: 100%;
 }
+
+.fade-parent {
+    height: 100%;
+    width: 100%;
+}
+.fade {
+    position: absolute;
+    width: 100%;
+}
+.fade-new {
+    opacity: 0;
+}
