@@ -7,6 +7,13 @@ window.onload = function(){
     for (var i = 0; i < parallaxImages.length; i++) {
         parallaxImages[i].style.minWidth = window.innerWidth.toString() + "px";
         parallaxImages[i].style.minHeight = (window.innerHeight + 200).toString() + "px";
+
+        var minHeight = window.innerHeight + 200;
+        if (minHeight * parallaxImages[i].width / parallaxImages[i].height) {
+            parallaxImages[i].style.width = window.innerWidth.toString() + "px";
+        } else {
+            parallaxImages[i].style.height = minHeight.toString() + "px";
+        }
     }
 
     // LETTERBOX_IMAGE

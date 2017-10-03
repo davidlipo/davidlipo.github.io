@@ -9,7 +9,7 @@ body {
     z-index: 1;
     width: 100%;
     height: 100%;
-    font-size: 5em;
+    font-size: 1.8em;
     color: white;
 }
 
@@ -32,17 +32,17 @@ body {
 .quotes {
     display: inline-block;
     font-size: 3em;
-    width: 110px;
+    width: 100px;
 }
 .quotes:before {
-    content: "A";
+    content: "\201C";
     opacity: 0;
 }
 
 .quotesStart:after {
     content: "\201C";
     position: absolute;
-    margin-top: -1em;
+    margin-top: -0.1em;
     margin-left: -1em;
 }
 .animationStart.quotesStart:after,
@@ -59,7 +59,7 @@ body {
 .quotesEnd:after {
     content: "\201D";
     position: absolute;
-    margin-top: -1em;
+    margin-top: -0.1em;
     margin-left: -5em;
 }
 .animationStart.quotesEnd:after,
