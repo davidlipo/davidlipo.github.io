@@ -44,6 +44,8 @@ function onScroll(event) {
             if (amountToFade > 0) {
                 var opacity = 1 - (amountToFade / fadePercentage);
                 parallaxImages[i].style.opacity = opacity;
+            } else {
+                parallaxImages[i].style.opacity = 1;
             }
         } else {
             parallaxImages[i].style.top = "50000px";
