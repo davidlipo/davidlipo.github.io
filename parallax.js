@@ -5,10 +5,10 @@ window.onload = function(){
     var contentHeight = document.getElementById("content").scrollHeight;
     var parallaxImages = document.getElementsByClassName("parallax-image");
     for (var i = 0; i < parallaxImages.length; i++) {
-        parallaxImages[i].style.minWidth = window.innerWidth.toString() + "px";
-        parallaxImages[i].style.minHeight = (window.innerHeight + 200).toString() + "px";
-
         var minHeight = window.innerHeight + 200;
+        parallaxImages[i].style.minWidth = window.innerWidth.toString() + "px";
+        parallaxImages[i].style.minHeight = minHeight.toString() + "px";
+
         if (minHeight * parallaxImages[i].width / parallaxImages[i].height) {
             parallaxImages[i].style.width = window.innerWidth.toString() + "px";
         } else {
