@@ -14,6 +14,9 @@ window.onload = function(){
         } else {
             parallaxImages[i].style.height = minHeight.toString() + "px";
         }
+        if (i != 0) {
+            parallaxImages[i].style.top = "50000px";
+        }
     }
 
     var divsToInit = document.getElementsByClassName("onappear");

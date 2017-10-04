@@ -24,7 +24,6 @@ body {
 
 .parallax-image {
     position: absolute;
-    filter: blur(6px);
 }
 
 .alternateLorum {
