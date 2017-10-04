@@ -33,8 +33,8 @@ body {
 
 .quotes {
     display: inline-block;
-    font-size: 3em;
-    width: 0.5em;
+    font-size: 2.5em;
+    width: 0.4em;
 }
 .quotes:before {
     content: "\201C";
@@ -44,13 +44,14 @@ body {
 .quotesStart:after {
     content: "\201C";
     position: absolute;
+    margin-top: -1.2em;
     margin-left: -3em;
 }
 .animationStart.quotesStart:after,
 .animationEnd.quotesStart:after {
     animation-duration: 500ms;
     animation-name: slideinStart;
-    margin-left: -0.5em;
+    margin-left: -0.2em;
 }
 .animationEnd.quotesStart:after {
     animation-direction: reverse;
@@ -60,13 +61,14 @@ body {
 .quotesEnd:after {
     content: "\201D";
     position: absolute;
+    margin-top: -1.2em;
     margin-left: -6em;
 }
 .animationStart.quotesEnd:after,
 .animationEnd.quotesEnd:after {
     animation-duration: 1000ms;
     animation-name: slideinEnd;
-    margin-left: -0.5em;
+    margin-left: 0.1em;
 }
 .animationEnd.quotesEnd:after {
     animation-direction: reverse;
@@ -79,7 +81,7 @@ body {
     }
 
     to {
-        margin-left: -0.5em;
+        margin-left: -0.2em;
     }
 }
 
@@ -89,7 +91,7 @@ body {
     }
 
     to {
-        margin-left: -0.5em;
+        margin-left: 0.1em;
     }
 }
 
