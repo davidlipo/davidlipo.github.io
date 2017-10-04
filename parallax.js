@@ -19,6 +19,7 @@ window.onload = function(){
         }
     }
 
+    // FADE_COLOR
     var divsToInit = document.getElementsByClassName("onappear");
     for (var i = 0; i < divsToInit.length; i++) {
         if (divsToInit[i].dataset.onappear == "FADE_COLOR") {
