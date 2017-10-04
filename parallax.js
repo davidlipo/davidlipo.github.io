@@ -133,7 +133,7 @@ function changeColorOnScreen(element, percentageToGoal) {
         g: currentColorRGB.g > 15 ? currentColorRGB.g.toString(16) : "0" + currentColorRGB.g.toString(16),
         b: currentColorRGB.b > 15 ? currentColorRGB.b.toString(16) : "0" + currentColorRGB.b.toString(16),
     }*/
-    var opacity = element.style.backgroundColor ? element.style.backgroundColor.split(",")[3].slice(0, -1) : 1;
+    var opacity = (element.style.backgroundColor && element.style.backgroundColor.substring(0, 4) == "rgba") ? element.style.backgroundColor.split(",")[3].slice(0, -1) : 1;
     //element.style.backgroundColor = "#" + currentColorRGBFormatted.r + currentColorRGBFormatted.g + currentColorRGBFormatted.b;
     element.style.backgroundColor = "rgba(" + currentColorRGB.r + "," + currentColorRGB.g + "," + currentColorRGB.b + "," + opacity + ")";
 }
