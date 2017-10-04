@@ -79,7 +79,7 @@ body {
     transition: margin-left 1000ms 200ms;
 }
 .animationStart.subtitle {
-    margin-left: 120px;
+    margin-left: 100px;
 }
 
 .quotesEnd:after {
