@@ -104,10 +104,29 @@ function onScroll(event) {
 }
 
 function changeColorOnScreen(element, percentageToGoal) {
-    var white = parseInt("FFFFFF", 16);
-    var yellow = parseInt("FFFF00", 16);
-    var color = Math.ceil(percentageToGoal*(white - yellow) + yellow);
-    element.style.backgroundColor = "#" + color.toString(16);
+    var startColor = element.dataset.startColor;
+    var endColor = element.dataset.endColor;
+    var startColorRGB = {
+        r: parseInt(startColor.substring(0, 2), 16),
+        g: parseInt(startColor.substring(2, 4), 16),
+        b: parseInt(startColor.substring(4, 6), 16),
+    };
+    var endColorRGB = {
+        r: parseInt(endColor.substring(0, 2), 16),
+        g: parseInt(endColor.substring(2, 4), 16),
+        b: parseInt(endColor.substring(4, 6), 16),
+    }
+    var currentColorRGB = {
+        r: Math.ceil(percentageToGoal*(endColorRGB.r - startColorRGB.r) + startColorRGB.r),
+        g: Math.ceil(percentageToGoal*(endColorRGB.g - startColorRGB.g) + startColorRGB.g),
+        b: Math.ceil(percentageToGoal*(endColorRGB.b - startColorRGB.b) + startColorRGB.b),
+    }
+    var currentColorRGBFormatted = {
+        r: currentColorRGB.r > 15 ? currentColorRGB.r.toString(16) : "0" + currentColorRGB.r.toString(16),
+        g: currentColorRGB.g > 15 ? currentColorRGB.g.toString(16) : "0" + currentColorRGB.g.toString(16),
+        b: currentColorRGB.b > 15 ? currentColorRGB.b.toString(16) : "0" + currentColorRGB.b.toString(16),
+    }
+    element.style.backgroundColor = "#" + currentColorRGBFormatted.r + currentColorRGBFormatted.g + currentColorRGBFormatted.b;
 }
 
 function addAnimationClass(element, percentageToGoal) {
