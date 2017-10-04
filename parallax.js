@@ -100,6 +100,7 @@ function onScroll(event) {
                     changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
                     break;
                 case "PULL_QUOTES":
+                    console.log(boundingBox.top);
                     addAnimationClass(divsToFadeIn[i], percentageToGoal);
                     break;
                 case "LETTERBOX_IMAGE":
@@ -131,13 +132,7 @@ function changeColorOnScreen(element, percentageToGoal) {
         g: Math.ceil(percentageToGoal*(endColorRGB.g - startColorRGB.g) + startColorRGB.g),
         b: Math.ceil(percentageToGoal*(endColorRGB.b - startColorRGB.b) + startColorRGB.b),
     }
-    /*var currentColorRGBFormatted = {
-        r: currentColorRGB.r > 15 ? currentColorRGB.r.toString(16) : "0" + currentColorRGB.r.toString(16),
-        g: currentColorRGB.g > 15 ? currentColorRGB.g.toString(16) : "0" + currentColorRGB.g.toString(16),
-        b: currentColorRGB.b > 15 ? currentColorRGB.b.toString(16) : "0" + currentColorRGB.b.toString(16),
-    }*/
     var opacity = (element.style.backgroundColor && element.style.backgroundColor.substring(0, 4) == "rgba") ? element.style.backgroundColor.split(",")[3].slice(0, -1) : 1;
-    //element.style.backgroundColor = "#" + currentColorRGBFormatted.r + currentColorRGBFormatted.g + currentColorRGBFormatted.b;
     element.style.backgroundColor = "rgba(" + currentColorRGB.r + "," + currentColorRGB.g + "," + currentColorRGB.b + "," + opacity + ")";
 }
 
@@ -146,13 +141,9 @@ function addAnimationClass(element, percentageToGoal) {
     var divsToAddClass = element.getElementsByClassName("quotes");
     for (var i = 0; i < divsToAddClass.length; i++) {
         if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > percentageToAnimate) {
-            divsToAddClass[i].classList.remove("animationEnd");
-            void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
             divsToAddClass[i].classList.add("animationStart");
         } else if (divsToAddClass[i].classList.contains("animationStart") && percentageToGoal < percentageToAnimate) {
             divsToAddClass[i].classList.remove("animationStart");
-            void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
-            divsToAddClass[i].classList.add("animationEnd");
         }
     }
 }

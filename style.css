@@ -26,17 +26,23 @@ body {
     position: absolute;
 }
 
+.onappear {
+    overflow: hidden;
+}
+
 .alternateLorum {
     background-color: white;
     color:black;
 }
 
-.quotes {
+.quotesStart,
+.quotesEnd {
     display: inline-block;
     font-size: 2.5em;
     width: 0.4em;
 }
-.quotes:before {
+.quotesStart:before,
+.quotesEnd:before {
     content: "\201C";
     opacity: 0;
 }
@@ -44,55 +50,51 @@ body {
 .quotesStart:after {
     content: "\201C";
     position: absolute;
-    margin-top: -1.2em;
-    margin-left: -3em;
+    opacity: 0;
+    margin-top: -90px;
+    left: -50px;
+    transition: left 500ms 500ms,
+                opacity 500ms 500ms;
 }
-.animationStart.quotesStart:after,
-.animationEnd.quotesStart:after {
-    animation-duration: 500ms;
-    animation-name: slideinStart;
-    margin-left: -0.2em;
+.animationStart.quotesStart:after {
+    opacity: 1;
+    left: 30px;
 }
-.animationEnd.quotesStart:after {
-    animation-direction: reverse;
-    margin-left: -3em;
+
+.headline {
+    white-space: nowrap;
+    margin-top: -70px;
+    margin-left: -100%;
+    transition: margin-left 1000ms;
+}
+.animationStart.headline {
+    margin-left: 40px;
+}
+
+.subtitle {
+    white-space: nowrap;
+    margin-top: -80px;
+    margin-bottom: 40px;
+    margin-left: 120%;
+    transition: margin-left 1000ms 200ms;
+}
+.animationStart.subtitle {
+    margin-left: 120px;
 }
 
 .quotesEnd:after {
     content: "\201D";
     position: absolute;
-    margin-top: -1.2em;
-    margin-left: -6em;
+    opacity: 0;
+    margin-top: -90px;
+    margin-bottom: 40px;
+    right: -50px;
+    transition: right 500ms 700ms,
+                opacity 500ms 700ms;
 }
-.animationStart.quotesEnd:after,
-.animationEnd.quotesEnd:after {
-    animation-duration: 1000ms;
-    animation-name: slideinEnd;
-    margin-left: 0.1em;
-}
-.animationEnd.quotesEnd:after {
-    animation-direction: reverse;
-    margin-left: -6em;
-}
-
-@keyframes slideinStart {
-    from {
-        margin-left: -3em;
-    }
-
-    to {
-        margin-left: -0.2em;
-    }
-}
-
-@keyframes slideinEnd {
-    from {
-        margin-left: -6em;
-    }
-
-    to {
-        margin-left: 0.1em;
-    }
+.animationStart.quotesEnd:after {
+    opacity: 1;
+    right: 30px;
 }
 
 .letterbox-parent {
