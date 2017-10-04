@@ -138,7 +138,7 @@ function scrollLetterbox(element, percentageToGoal) {
 }
 
 function fadeImage(element, percentageToGoal) {
-    var startPercentage = 0.5;
+    var startPercentage = 0.2;
     if (percentageToGoal > startPercentage) {
         var percentageTillEnd = (percentageToGoal - startPercentage) / (1 - startPercentage);
         var fadeParent = element.getElementsByClassName("fade-parent")[0];
