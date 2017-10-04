@@ -46,7 +46,7 @@ window.onload = function(){
     // PULL_QUOTES
     var quotesEnds = document.getElementsByClassName("quotesEnd");
     for (var i = 0; i < quotesEnds.length; i++) {
-        quotesEnds[i].style.display = "none";
+        quotesEnds[i].classList.add("hide");
     }
 }
 
@@ -106,7 +106,6 @@ function onScroll(event) {
                     changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
                     break;
                 case "PULL_QUOTES":
-                    console.log(boundingBox.top);
                     addAnimationClass(divsToFadeIn[i], percentageToGoal);
                     break;
                 case "LETTERBOX_IMAGE":
@@ -148,9 +147,9 @@ function addAnimationClass(element, percentageToGoal) {
     var divsToAddClass = element.getElementsByClassName("quotes");
     for (var i = 0; i < divsToAddClass.length; i++) {
         if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > percentageToAnimate) {
-            clearTimeout(quotesEndTimeout);
             if (divsToAddClass[i].classList.contains("quotesEnd")) {
-                divsToAddClass[i].style.display = "block";
+                clearTimeout(quotesEndTimeout);
+                divsToAddClass[i].classList.remove("hide");
                 var toShow = divsToAddClass[i];
                 setTimeout(() => toShow.classList.add("animationStart"));
             } else {
@@ -161,7 +160,7 @@ function addAnimationClass(element, percentageToGoal) {
             if (divsToAddClass[i].classList.contains("quotesEnd")) {
                 clearTimeout(quotesEndTimeout);
                 var toHide = divsToAddClass[i];
-                quotesEndTimeout = setTimeout(function() { toHide.style.display = "none"; }.bind(), 1200);
+                quotesEndTimeout = setTimeout(function() { toHide.classList.add("hide"); }.bind(), 1200);
             }
         }
     }
