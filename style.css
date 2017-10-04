@@ -87,7 +87,7 @@ body {
     content: "\201D";
     position: absolute;
     opacity: 0;
-    margin-top: 10px;
+    margin-top: 130px;
     margin-bottom: 40px;
     right: -50px;
     transition: right 500ms 700ms,
