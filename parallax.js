@@ -139,13 +139,14 @@ function changeColorOnScreen(element, percentageToGoal) {
 }
 
 function addAnimationClass(element, percentageToGoal) {
+    var percentageToAnimate = 0.3;
     var divsToAddClass = element.getElementsByClassName("quotes");
     for (var i = 0; i < divsToAddClass.length; i++) {
-        if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > 0.5) {
+        if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > percentageToAnimate) {
             divsToAddClass[i].classList.remove("animationEnd");
             void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
             divsToAddClass[i].classList.add("animationStart");
-        } else if (divsToAddClass[i].classList.contains("animationStart") && percentageToGoal < 0.5) {
+        } else if (divsToAddClass[i].classList.contains("animationStart") && percentageToGoal < percentageToAnimate) {
             divsToAddClass[i].classList.remove("animationStart");
             void divsToAddClass[i].offsetWidth; // reading the property requires a recalc
             divsToAddClass[i].classList.add("animationEnd");

@@ -35,7 +35,7 @@ body {
 .quotes {
     display: inline-block;
     font-size: 3em;
-    width: 100px;
+    width: 0.5em;
 }
 .quotes:before {
     content: "\201C";
@@ -45,54 +45,52 @@ body {
 .quotesStart:after {
     content: "\201C";
     position: absolute;
-    margin-top: -0.1em;
-    margin-left: -1em;
+    margin-left: -3em;
 }
 .animationStart.quotesStart:after,
 .animationEnd.quotesStart:after {
     animation-duration: 500ms;
     animation-name: slideinStart;
-    margin-left: 0;
+    margin-left: -0.5em;
 }
 .animationEnd.quotesStart:after {
     animation-direction: reverse;
-    margin-left: -1em;
+    margin-left: -3em;
 }
 
 .quotesEnd:after {
     content: "\201D";
     position: absolute;
-    margin-top: -0.1em;
-    margin-left: -5em;
+    margin-left: -6em;
 }
 .animationStart.quotesEnd:after,
 .animationEnd.quotesEnd:after {
     animation-duration: 1000ms;
     animation-name: slideinEnd;
-    margin-left: 0;
+    margin-left: -0.5em;
 }
 .animationEnd.quotesEnd:after {
     animation-direction: reverse;
-    margin-left: -4em;
+    margin-left: -6em;
 }
 
 @keyframes slideinStart {
     from {
-        margin-left: -1em;
+        margin-left: -3em;
     }
 
     to {
-        margin-left: 0;
+        margin-left: -0.5em;
     }
 }
 
 @keyframes slideinEnd {
     from {
-        margin-left: -4em;
+        margin-left: -6em;
     }
 
     to {
-        margin-left: 0;
+        margin-left: -0.5em;
     }
 }
 
