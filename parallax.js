@@ -196,7 +196,6 @@ function fadeImage(element, percentageToGoal) {
     if (percentageToGoal > startPercentage) {
         var percentageTillEnd = (percentageToGoal - startPercentage) / (1 - startPercentage);
         var fadeParent = element.getElementsByClassName("fade-parent")[0];
-        var fadeInitial = fadeParent.getElementsByClassName("fade-initial")[0];
         var fadeNew = fadeParent.getElementsByClassName("fade-new")[0];
         fadeNew.style.opacity = percentageTillEnd;
     }
