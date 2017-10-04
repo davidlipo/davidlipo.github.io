@@ -186,7 +186,7 @@ function scrollHiding(element) {
     var hidingParent = element.getElementsByClassName("hiding-parent")[0];
     var hidingImage = hidingParent.getElementsByClassName("hiding-image")[0];
     var boundingBox = element.getBoundingClientRect();
-    hidingImage.style.marginTop = -boundingBox.top + "px";
+    hidingImage.style.marginTop = -(boundingBox.top / 2) + "px";
     hidingParent.style.height = (hidingImage.height + boundingBox.top) + "px";
 }
 
