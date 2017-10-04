@@ -16,6 +16,13 @@ window.onload = function(){
         }
     }
 
+    var divsToInit = document.getElementsByClassName("onappear");
+    for (var i = 0; i < divsToInit.length; i++) {
+        if (divsToInit[i].dataset.onappear == "FADE_COLOR") {
+            changeColorOnScreen(divsToInit[i], 0);
+        }
+    }
+
     // LETTERBOX_IMAGE
     var letterboxParents = document.getElementsByClassName("letterbox-parent");
     for (var i = 0; i < letterboxParents.length; i++) {
@@ -121,12 +128,14 @@ function changeColorOnScreen(element, percentageToGoal) {
         g: Math.ceil(percentageToGoal*(endColorRGB.g - startColorRGB.g) + startColorRGB.g),
         b: Math.ceil(percentageToGoal*(endColorRGB.b - startColorRGB.b) + startColorRGB.b),
     }
-    var currentColorRGBFormatted = {
+    /*var currentColorRGBFormatted = {
         r: currentColorRGB.r > 15 ? currentColorRGB.r.toString(16) : "0" + currentColorRGB.r.toString(16),
         g: currentColorRGB.g > 15 ? currentColorRGB.g.toString(16) : "0" + currentColorRGB.g.toString(16),
         b: currentColorRGB.b > 15 ? currentColorRGB.b.toString(16) : "0" + currentColorRGB.b.toString(16),
-    }
-    element.style.backgroundColor = "#" + currentColorRGBFormatted.r + currentColorRGBFormatted.g + currentColorRGBFormatted.b;
+    }*/
+    var opacity = element.style.backgroundColor ? element.style.backgroundColor.split(",")[3].slice(0, -1) : 1;
+    //element.style.backgroundColor = "#" + currentColorRGBFormatted.r + currentColorRGBFormatted.g + currentColorRGBFormatted.b;
+    element.style.backgroundColor = "rgba(" + currentColorRGB.r + "," + currentColorRGB.g + "," + currentColorRGB.b + "," + opacity + ")";
 }
 
 function addAnimationClass(element, percentageToGoal) {
