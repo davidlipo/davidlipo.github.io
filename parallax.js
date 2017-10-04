@@ -98,21 +98,25 @@ function onScroll(event) {
     for (var i = 0; i < divsToFadeIn.length; i++) {
         var boundingBox = divsToFadeIn[i].getBoundingClientRect();
         var distanceToTop = boundingBox.top + (boundingBox.height / 2);
-        if (distanceToTop < screenHeight) {
+        if (boundingBox.top < screenHeight) {
             var distanceToEnd = (boundingBox.height / 2);
-            var percentageToGoal = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
+            var percentageToGoalFromCenter = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
+            var percentageToGoalFromTop = Math.min(1, (screenHeight - boundingBox.top) / (screenHeight - distanceToEnd));
             switch (divsToFadeIn[i].dataset.onappear) {
                 case "FADE_COLOR":
-                    changeColorOnScreen(divsToFadeIn[i], percentageToGoal);
+                    changeColorOnScreen(divsToFadeIn[i], percentageToGoalFromTop);
                     break;
                 case "PULL_QUOTES":
-                    addAnimationClass(divsToFadeIn[i], percentageToGoal);
+                    (distanceToTop < screenHeight) ? addAnimationClass(divsToFadeIn[i], percentageToGoalFromCenter) : null;
                     break;
                 case "LETTERBOX_IMAGE":
-                    scrollLetterbox(divsToFadeIn[i], percentageToGoal);
+                    (distanceToTop < screenHeight) ? scrollLetterbox(divsToFadeIn[i], percentageToGoalFromCenter) : null;
+                    break;
+                case "HIDING_IMAGE":
+                    scrollHiding(divsToFadeIn[i]);
                     break;
                 case "FADE_IMAGE":
-                    fadeImage(divsToFadeIn[i], percentageToGoal);
+                    (distanceToTop < screenHeight) ? fadeImage(divsToFadeIn[i], percentageToGoalFromCenter) : null;
                     break;
             }
         }
@@ -176,6 +180,14 @@ function scrollLetterbox(element, percentageToGoal) {
         var amountToScroll = -(scrollPercentage * letterboxImage.height * (1 - percentageTillEnd));
         letterboxImage.style.marginTop = (amountToScroll).toString() + "px";
     }
+}
+
+function scrollHiding(element) {
+    var hidingParent = element.getElementsByClassName("hiding-parent")[0];
+    var hidingImage = hidingParent.getElementsByClassName("hiding-image")[0];
+    var boundingBox = element.getBoundingClientRect();
+    hidingImage.style.marginTop = -boundingBox.top + "px";
+    hidingParent.style.height = (hidingImage.height + boundingBox.top) + "px";
 }
 
 function fadeImage(element, percentageToGoal) {

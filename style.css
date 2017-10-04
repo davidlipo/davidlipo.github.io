@@ -123,3 +123,12 @@ body {
 .fade-new {
     opacity: 0;
 }
+
+.hiding-parent {
+    width: 100%;
+    overflow: hidden;
+}
+
+.hiding-image {
+    width: 100%;
+}
