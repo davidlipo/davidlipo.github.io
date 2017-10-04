@@ -42,6 +42,12 @@ window.onload = function(){
         var fadeImage = fadeParents[i].getElementsByClassName("fade-initial")[0];
         fadeParents[i].style.height = fadeImage.height + "px";
     }
+
+    // PULL_QUOTES
+    var quotesEnds = document.getElementsByClassName("quotesEnd");
+    for (var i = 0; i < quotesEnds.length; i++) {
+        quotesEnds[i].style.display = "none";
+    }
 }
 
 function onScroll(event) {
@@ -136,14 +142,27 @@ function changeColorOnScreen(element, percentageToGoal) {
     element.style.backgroundColor = "rgba(" + currentColorRGB.r + "," + currentColorRGB.g + "," + currentColorRGB.b + "," + opacity + ")";
 }
 
+var quotesEndTimeout;
 function addAnimationClass(element, percentageToGoal) {
     var percentageToAnimate = 0.3;
     var divsToAddClass = element.getElementsByClassName("quotes");
     for (var i = 0; i < divsToAddClass.length; i++) {
         if (!divsToAddClass[i].classList.contains("animationStart") && percentageToGoal > percentageToAnimate) {
-            divsToAddClass[i].classList.add("animationStart");
+            clearTimeout(quotesEndTimeout);
+            if (divsToAddClass[i].classList.contains("quotesEnd")) {
+                divsToAddClass[i].style.display = "block";
+                var toShow = divsToAddClass[i];
+                setTimeout(() => toShow.classList.add("animationStart"));
+            } else {
+                divsToAddClass[i].classList.add("animationStart");
+            }
         } else if (divsToAddClass[i].classList.contains("animationStart") && percentageToGoal < percentageToAnimate) {
             divsToAddClass[i].classList.remove("animationStart");
+            if (divsToAddClass[i].classList.contains("quotesEnd")) {
+                clearTimeout(quotesEndTimeout);
+                var toHide = divsToAddClass[i];
+                quotesEndTimeout = setTimeout(function() { toHide.style.display = "none"; }.bind(), 1200);
+            }
         }
     }
 }

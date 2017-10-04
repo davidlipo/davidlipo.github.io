@@ -92,8 +92,10 @@ body {
     right: -50px;
     transition: right 500ms 700ms,
                 opacity 500ms 700ms;
+    /*WORKAROUND, HAVE TO SET THE TIMEOUT IN PARALLAX.JS TO BE THE TRANSITION AMOUNT ABOVE*/
 }
 .animationStart.quotesEnd:after {
+    display: block;
     opacity: 1;
     right: 30px;
 }
