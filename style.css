@@ -52,7 +52,7 @@ body {
     content: "\201C";
     position: absolute;
     opacity: 0;
-    margin-top: -50px;
+    margin-top: -20px;
     left: -50px;
     transition: left 500ms 500ms,
                 opacity 500ms 500ms;
@@ -87,7 +87,7 @@ body {
     content: "\201D";
     position: absolute;
     opacity: 0;
-    margin-top: -50px;
+    margin-top: -20px;
     margin-bottom: 40px;
     right: -50px;
     transition: right 500ms 700ms,
