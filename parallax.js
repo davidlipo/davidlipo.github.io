@@ -23,7 +23,7 @@ window.onload = function(){
         var scrollPercentage = parseInt(letterboxParents[i].dataset.scrollPercentage, 10) / 100;
         letterboxParents[i].style.height = ((1 - scrollPercentage) * letterboxImage.height).toString() + "px";
         var amountToScroll = -(scrollPercentage * letterboxImage.height);
-        letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
+        letterboxImage.style.marginTop = amountToScroll.toString() + "px";
     }
 
     // FADE_IMAGE
@@ -45,7 +45,7 @@ function onScroll(event) {
     var fadePercentage = 0.1;
     var percentageSoFar = 0;
     for (var i = 0; i < parallaxImages.length; i++) {
-        var currentPercentage = parseInt(parallaxImages[i].dataset.percentage, 10) / 100;
+        var currentPercentage = parseInt((parallaxImages[i].dataset.percentage || 100), 10) / 100;
         var imageScrollableHeight = parallaxImages[i].height - screenHeight;
         if (percentageSoFar - fadePercentage <= percentageScrolled && percentageSoFar + currentPercentage + fadePercentage >= percentageScrolled) {
             var amountToScrollOnImage = imageScrollableHeight * (percentageScrolled - percentageSoFar) / currentPercentage;
@@ -80,9 +80,10 @@ function onScroll(event) {
 
     var divsToFadeIn = document.getElementsByClassName("onappear");
     for (var i = 0; i < divsToFadeIn.length; i++) {
-        var distanceToTop = divsToFadeIn[i].getBoundingClientRect().top;
+        var boundingBox = divsToFadeIn[i].getBoundingClientRect();
+        var distanceToTop = boundingBox.top + (boundingBox.height / 2);
         if (distanceToTop < screenHeight) {
-            var distanceToEnd = 200;
+            var distanceToEnd = (boundingBox.height / 2);
             var percentageToGoal = Math.min(1, (screenHeight - distanceToTop) / (screenHeight - distanceToEnd));
             switch (divsToFadeIn[i].dataset.onappear) {
                 case "FADE_COLOR":
@@ -125,14 +126,14 @@ function addAnimationClass(element, percentageToGoal) {
 }
 
 function scrollLetterbox(element, percentageToGoal) {
-    var startPercentage = 0.5;
+    var startPercentage = 0;
     if (percentageToGoal > startPercentage) {
         var percentageTillEnd = (percentageToGoal - startPercentage) / (1 - startPercentage);
         var letterboxParent = element.getElementsByClassName("letterbox-parent")[0];
         var letterboxImage = letterboxParent.getElementsByClassName("letterbox-image")[0];
         var scrollPercentage = parseInt(letterboxParent.dataset.scrollPercentage, 10) / 100;
         var amountToScroll = -(scrollPercentage * letterboxImage.height * (1 - percentageTillEnd));
-        letterboxImage.style.marginTop = (amountToScroll / 2).toString() + "px";
+        letterboxImage.style.marginTop = (amountToScroll).toString() + "px";
     }
 }
 
